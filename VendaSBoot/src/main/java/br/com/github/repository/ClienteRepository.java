@@ -1,7 +1,7 @@
-package br.com.github.br.com.github.repository;
+package br.com.github.repository;
 
 
-import br.com.github.br.com.github.modelo.Cliente;
+import br.com.github.modelo.Cliente;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,4 +1,4 @@
-package br.com.github.br.com.github.modelo;
+package br.com.github.modelo;
 
 public class ItemPedido {
 

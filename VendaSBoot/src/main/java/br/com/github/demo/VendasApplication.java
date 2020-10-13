@@ -1,4 +1,4 @@
-package br.com.github.br.com.github.demo;
+package br.com.github.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class VendasApplication {
 
-//    @Autowired
-//    @Qualifier("applicationName")
+//  @Autowired
+//  @Qualifier("applicationName")
     @Value("${application.name}")
     private String applicationName;
 
