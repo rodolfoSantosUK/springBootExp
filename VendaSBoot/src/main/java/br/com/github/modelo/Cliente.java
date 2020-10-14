@@ -20,7 +20,7 @@ public class Cliente {
     private Set<Pedido> pedidos;
 
     public Set<Pedido> getPedidos() {
-        return Collections.unmodifiableSet(pedidos);
+        return pedidos;
     }
 
     public void adicionaPedidos(Pedido pedido ) {
