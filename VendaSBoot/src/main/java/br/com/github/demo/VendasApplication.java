@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,20 +24,24 @@ import java.util.List;
 @SpringBootApplication
 //@RestController
 @ComponentScan({"br.*"})
-@EntityScan("br.com.github.modelo")
+@EntityScan(basePackages = {"br.com.github.modelo", "br.com.github.alura" })
 @EnableJpaRepositories("br.com.github.repository")
 public class VendasApplication {
 
+    @Autowired
+     private EntityManager entityManager;
+
     @Bean
     public CommandLineRunner init(@Autowired ClienteRepository clienteRepository,
-                                  @Autowired PedidoRepository pedidoRepository) {
+                                  @Autowired PedidoRepository pedidoRepository,
+                                  @Autowired AluraRepository aluraRepository) {
 
         return args -> {
             Cliente cliente = new Cliente();
             cliente.setNome("Douglas");
 
             System.out.println("Salvando clientes");
-            clienteRepository.save(cliente);
+            aluraRepository.salvar(cliente);
 
             // CRIANDO O PEDIDO
             Pedido pedido = new Pedido();
