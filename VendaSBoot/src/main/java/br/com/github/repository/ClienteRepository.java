@@ -4,6 +4,9 @@ package br.com.github.repository;
 import br.com.github.modelo.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -18,54 +21,15 @@ import java.util.List;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
-//    private static String INSERT = "insert into cliente(nome) values (?) ";
-//    private static String UPDATE = "update cliente set nome = ?  where id = ?  ";
-//    private static String SELECT_ALL = "select *  from cliente ";
-//    private static String DELETE = "delete from cliente  where id = ?  ";
-//
-//    @Autowired
-//    private JdbcTemplate jdbcTemplate;
-//
-//    @Autowired
-//    private EntityManager entityManager;
-//
-//    @Transactional
-//    public Cliente salvar(Cliente cliente) {
-//        entityManager.persist(cliente);
-//        return cliente;
-//    }
-//
-//    public Cliente atualizar(Cliente cliente) {
-//        jdbcTemplate.update(UPDATE, new Object[]{cliente.getNome(), cliente.getId()});
-//        return cliente;
-//    }
-//
-//    public void deletar(Cliente cliente) {
-//        deletar(cliente.getId());
-//    }
-//
-//    public void deletar(Integer id) {
-//        jdbcTemplate.update(DELETE, new Object[]{id});
-//    }
-//
-//    public List<Cliente> obterTodos() {
-//        return jdbcTemplate.query(SELECT_ALL, obterClienteMapper());
-//    }
-//
-//    public List<Cliente> buscarPorNome(String nome) {
-//        return jdbcTemplate.query(SELECT_ALL.concat(" where nome like ?  "),
-//                new Object[]{"%" + nome + "%"},
-//                obterClienteMapper());
-//    }
-//
-//    private RowMapper<Cliente> obterClienteMapper() {
-//        return new RowMapper<Cliente>() {
-//            @Override
-//            public Cliente mapRow(ResultSet resultSet, int i) throws SQLException {
-//                return new Cliente(resultSet.getInt("id"), resultSet.getString("nome"));
-//            }
-//        };
-//    }
-//
+
+    @Query(value = "select c from Cliente c where c.nome like :nome")
+    List<Cliente> encontrarPorNome(@Param("nome") String nome);
+
+    @Query( " delete from Cliente c where c.nome =:nome " )
+    @Modifying
+    @Transactional
+    void deleteByNome( @Param("nome") String nome);
+
+    boolean existsByNome(String nome);
 
 }

@@ -31,28 +31,13 @@ public class VendasApplication {
             cliente.setNome("Douglas");
 
             System.out.println("Salvando clientes");
-           clienteRepository.save(cliente);
+            clienteRepository.save(cliente);
 
+            List<Cliente> result = clienteRepository.encontrarPorNome("Dou");
+            result.forEach(System.out::println);
 
-//            System.out.println("Obtendo todos os clientes");
-//            List<Cliente> todosClientes = clienteRepository.obterTodos();
-//            todosClientes.forEach(System.out::println);
-//
-//            System.out.println("Atualizando o nome do cliente");
-//            todosClientes.forEach( c -> {
-//                c.setNome(c.getNome() + " Atualizado ");
-//                clienteRepository.atualizar(c);
-//            });
-//
-//            todosClientes = clienteRepository.obterTodos();
-//            todosClientes.forEach(System.out::println);
-//
-//            System.out.println("Deletando cliente");
-//
-//            clienteRepository.deletar(new Cliente(1));
-//
-//            System.out.println("Buscando por nome");
-//            clienteRepository.buscarPorNome("Fernan").forEach(System.out::println);
+            System.out.println("Deletando cliente");
+            clienteRepository.deleteByNome("Douglas");
 
 
         };
