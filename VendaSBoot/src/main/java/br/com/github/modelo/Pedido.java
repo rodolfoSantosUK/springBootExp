@@ -3,6 +3,7 @@ package br.com.github.modelo;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Pedido {
     @Id
@@ -13,9 +14,23 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @Column(name = "data_pedido")
     private LocalDate DataPedido;
+
+    @Column
     private BigDecimal total;
 
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
+    }
+
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 
     public Pedido() {
     }

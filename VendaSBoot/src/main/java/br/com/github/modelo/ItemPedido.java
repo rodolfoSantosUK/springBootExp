@@ -1,22 +1,46 @@
 package br.com.github.modelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "item_pedido")
 public class ItemPedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column( name = "id")
     private Integer id;
-    private String pedido;
+
+    @ManyToOne
+    @JoinColumn(name ="pedido_id")
+    private Pedido pedido;
+
+    public ItemPedido(Integer id, Pedido pedido, Produto produto, Integer quantidade) {
+        this.id = id;
+        this.pedido = pedido;
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    @ManyToOne
+    @JoinColumn(name ="produto_id")
     private Produto produto;
+
+    @Column
     private Integer quantidade;
 
 
     public ItemPedido() {
     }
 
-    public ItemPedido(Integer id, String pedido, Produto produto, Integer quantidade) {
-        this.id = id;
-        this.pedido = pedido;
-        this.produto = produto;
-        this.quantidade = quantidade;
-    }
 
 
     public Integer getId() {
@@ -25,14 +49,6 @@ public class ItemPedido {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(String pedido) {
-        this.pedido = pedido;
     }
 
     public Produto getProduto() {
