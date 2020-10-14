@@ -1,14 +1,20 @@
 package br.com.github.modelo;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
 
-private Integer id;
-private Cliente cliente;
-private LocalDate DataPedido;
-private BigDecimal total;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+    private LocalDate DataPedido;
+    private BigDecimal total;
 
 
     public Pedido() {

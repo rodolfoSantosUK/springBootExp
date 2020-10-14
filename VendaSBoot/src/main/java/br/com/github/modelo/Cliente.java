@@ -1,6 +1,8 @@
 package br.com.github.modelo;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.Set;
 
 @Entity
 @Table( name= "cliente")
@@ -13,6 +15,21 @@ public class Cliente {
 
     @Column(name="nome", length = 10)
     private String nome;
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Pedido> pedidos;
+
+    public Set<Pedido> getPedidos() {
+        return Collections.unmodifiableSet(pedidos);
+    }
+
+    public void adicionaPedidos(Pedido pedido ) {
+        getPedidos().add(pedido);
+    }
+
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 
     public Cliente() {
     }
