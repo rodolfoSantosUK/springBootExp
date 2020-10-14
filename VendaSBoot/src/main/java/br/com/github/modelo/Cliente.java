@@ -3,11 +3,12 @@ package br.com.github.modelo;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "cliente")
+@Table( name= "cliente")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column( name = "id")
     private Integer id;
 
     @Column(name="nome", length = 10)
