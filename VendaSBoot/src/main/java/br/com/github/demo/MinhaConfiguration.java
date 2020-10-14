@@ -1,4 +1,4 @@
-package br.com.github.br.com.github.demo;
+package br.com.github.demo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

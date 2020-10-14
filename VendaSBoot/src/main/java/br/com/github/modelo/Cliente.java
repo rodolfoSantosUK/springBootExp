@@ -16,9 +16,26 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+
+
+    public Cliente(Integer id) {
+        this.id = id;
+    }
+
     public Cliente(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 
     public Integer getId() {
