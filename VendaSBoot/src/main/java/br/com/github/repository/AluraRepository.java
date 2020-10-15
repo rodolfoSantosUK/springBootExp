@@ -1,6 +1,7 @@
-package br.com.github.demo;
+package br.com.github.repository;
 
 
+import br.com.github.alura.modelo.Conta;
 import br.com.github.modelo.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,8 +16,15 @@ public class AluraRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void salvar(Cliente cliente) {
-        entityManager.persist(cliente);
+    public void salvar(Object obj) {
+        entityManager.persist(obj);
     }
+
+    public Conta conta() {
+        return entityManager.find(Conta.class, 1L);
+    }
+
+
+
 
 }

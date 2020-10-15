@@ -19,6 +19,18 @@ public class Conta {
 	@OneToMany(mappedBy = "conta", fetch=FetchType.EAGER)
 	private List<Movimentacao> movimentacoes;
 
+	@Override
+	public String toString() {
+		return "Conta{" +
+				"id=" + id +
+				", titular='" + titular + '\'' +
+				", agencia=" + agencia +
+				", numero=" + numero +
+				", saldo=" + saldo +
+				", movimentacoes=" + movimentacoes +
+				'}';
+	}
+
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
