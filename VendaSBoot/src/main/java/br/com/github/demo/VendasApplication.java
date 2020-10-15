@@ -66,6 +66,7 @@ public class VendasApplication {
             aluraRepository.mediaValores();
             aluraRepository.mediaValoresPorData();
             aluraRepository.mediaValoresAgrupadosPorData();
+            aluraRepository.somaDasMovimentacoes();
 
         };
 
