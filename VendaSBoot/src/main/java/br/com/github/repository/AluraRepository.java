@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -35,6 +36,21 @@ public class AluraRepository {
         contas.forEach(System.out::println);
     }
 
+    public void somandoValores() {
+
+        String jpql = " select sum(m.valor) from Movimentacao m ";
+        TypedQuery<BigDecimal> query = entityManager.createQuery(jpql, BigDecimal.class);
+        BigDecimal soma = query.getSingleResult();
+        System.out.println("Soma " +  soma);
+    }
+
+    public void mediaValores() {
+
+        String jpql = " select avg(m.valor) from Movimentacao m ";
+        TypedQuery<Double> query = entityManager.createQuery(jpql, Double.class);
+        Double media = query.getSingleResult();
+        System.out.println("Media " +  media);
+    }
 
 
 

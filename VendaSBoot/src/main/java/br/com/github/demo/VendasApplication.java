@@ -61,7 +61,9 @@ public class VendasApplication {
             aluraRepository.salvar(movimentacao);
             aluraRepository.salvar(movimentacao2);
 
-            aluraRepository.metodoExemplo();
+            // aluraRepository.metodoExemplo();
+            aluraRepository.somandoValores();
+            aluraRepository.mediaValores();
 
         };
 
