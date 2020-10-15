@@ -2,12 +2,14 @@ package br.com.github.repository;
 
 
 import br.com.github.alura.modelo.Conta;
+import br.com.github.alura.modelo.MediaComData;
 import br.com.github.modelo.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.List;
@@ -52,6 +54,26 @@ public class AluraRepository {
         System.out.println("Media " +  media);
     }
 
+    public void mediaValoresPorData() {
+
+        String jpql = " select avg(m.valor) from Movimentacao m group by day(m.data), month(m.data), year(m.data)" ;
+        TypedQuery<Double> query = entityManager.createQuery(jpql, Double.class);
+        List<Double> media = query.getResultList();
+        System.out.println("Media " +  media);
+    }
+
+    public void mediaValoresAgrupadosPorData() {
+
+        String jpql = " select new br.com.github.alura.modelo.MediaComData( avg(m.valor), day(m.data), month(m.data)) " +
+                "from Movimentacao m group by day(m.data), month(m.data), year(m.data)" ;
+
+        TypedQuery<MediaComData> query = entityManager.createQuery(jpql, MediaComData.class);
+        List<MediaComData> media = query.getResultList();
+
+        for(MediaComData resultado : media) {
+            System.out.println( " A media das movimentacoes do dia " + resultado.getDia() + "/" +  resultado.getMes()  + " é " + resultado.getValor());
+        }
+    }
 
 
 }

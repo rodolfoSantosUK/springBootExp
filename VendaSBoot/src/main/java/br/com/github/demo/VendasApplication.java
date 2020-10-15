@@ -64,6 +64,8 @@ public class VendasApplication {
             // aluraRepository.metodoExemplo();
             aluraRepository.somandoValores();
             aluraRepository.mediaValores();
+            aluraRepository.mediaValoresPorData();
+            aluraRepository.mediaValoresAgrupadosPorData();
 
         };
 
