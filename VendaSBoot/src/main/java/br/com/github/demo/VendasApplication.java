@@ -1,5 +1,8 @@
 package br.com.github.demo;
 
+import br.com.github.alura.modelo.Conta;
+import br.com.github.alura.modelo.Movimentacao;
+import br.com.github.alura.modelo.TipoMovimentacao;
 import br.com.github.modelo.Cliente;
 import br.com.github.modelo.Pedido;
 import br.com.github.repository.AluraRepository;
@@ -17,6 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 @ComponentScan({"br.*"})
@@ -30,13 +34,34 @@ public class VendasApplication {
 
 
         return args -> {
-            Cliente cliente = new Cliente();
-            cliente.setNome("Douglas");
+            Conta conta = new Conta();
+            conta.setAgencia(1);
+            conta.setSaldo(22.9);
+            conta.setNumero(1);
+            conta.setTitular("Rodolfo Santos");
 
-            System.out.println("Salvando clientes");
-            aluraRepository.salvar(cliente);
+            Movimentacao movimentacao = new Movimentacao();
+            movimentacao.setData(LocalDateTime.now().plusDays(1));
+            movimentacao.setConta(conta);
+            movimentacao.setDescricao("MOvimentacao 1");
+            movimentacao.setTipoMovimentacao(TipoMovimentacao.ENTRADA);
+            movimentacao.setValor(BigDecimal.valueOf(150));
 
+            Movimentacao movimentacao2 = new Movimentacao();
+            movimentacao2.setData(LocalDateTime.now());
+            movimentacao2.setConta(conta);
+            movimentacao2.setDescricao("MOvimentacao 1");
+            movimentacao2.setTipoMovimentacao(TipoMovimentacao.ENTRADA);
+            movimentacao2.setValor(BigDecimal.valueOf(150));
 
+            System.out.println("Salvando conta");
+            aluraRepository.salvar(conta);
+
+            System.out.println("Salvando movimentacao");
+            aluraRepository.salvar(movimentacao);
+            aluraRepository.salvar(movimentacao2);
+
+            aluraRepository.metodoExemplo();
 
         };
 
