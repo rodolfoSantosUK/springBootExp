@@ -12,11 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -89,13 +87,44 @@ public class AluraRepository {
         // Objeto principal
         Root<Movimentacao> root = query.from(Movimentacao.class);
 
+
         // CLausulas
         Expression<BigDecimal> soma = builder.sum(root.<BigDecimal>get("valor"));
         query.select(soma);
 
         TypedQuery<BigDecimal> typedQuery = entityManager.createQuery(query);
-        System.out.println(" A soma das movimentações é:  " + typedQuery.getSingleResult() );
+        System.out.println(" A soma das movimentações é:  " + typedQuery.getSingleResult());
 
+    }
+
+    public List<Movimentacao> getMovimentacaoFiltradaPorData(Integer dia, Integer mes, Integer ano) {
+
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Movimentacao> query = builder.createQuery(Movimentacao.class);
+
+        Root<Movimentacao> root = query.from(Movimentacao.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (dia != null) {
+            Predicate predicate = builder.equal(builder.function("day", Integer.class, root.get("data")), dia);
+            predicates.add(predicate);
+        }
+
+        if (mes != null) {
+            Predicate predicate = builder.equal(builder.function("month", Integer.class, root.get("data")), mes);
+            predicates.add(predicate);
+        }
+
+        if (ano != null) {
+            Predicate predicate = builder.equal(builder.function("year", Integer.class, root.get("data")), ano);
+            predicates.add(predicate);
+        }
+
+        query.where((Predicate[]) predicates.toArray(new Predicate[0]));
+        TypedQuery<Movimentacao> typedQuery = entityManager.createQuery(query);
+
+        return typedQuery.getResultList();
 
     }
 
