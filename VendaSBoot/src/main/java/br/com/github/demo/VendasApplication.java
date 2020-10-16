@@ -10,6 +10,8 @@ import br.com.github.repository.AluraRepository;
 import br.com.github.repository.ClienteRepository;
 import br.com.github.repository.CourseRepository;
 import br.com.github.repository.PedidoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +34,8 @@ import java.util.List;
         "br.com.github.in28.modelo"})
 @EnableJpaRepositories("br.com.github.repository")
 public class VendasApplication implements CommandLineRunner {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private AluraRepository aluraRepository;
@@ -86,7 +90,7 @@ public class VendasApplication implements CommandLineRunner {
         course.setName("Linux");
 
         Course courseFromDatabase = courseRepository.findById(1L);
-        System.out.println("Course on database: " + courseFromDatabase);
+        logger.info("Course on database: " + courseFromDatabase);
 
     }
 
