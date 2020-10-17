@@ -1,9 +1,6 @@
 package br.com.github.in28.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Passport {
@@ -13,6 +10,17 @@ public class Passport {
     private Long id;
 
     private String number;
+
+    @OneToOne
+    private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public Passport() {
     }

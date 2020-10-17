@@ -29,7 +29,7 @@ public class Student {
                 '}';
     }
 
-    @OneToOne
+    @OneToOne(mappedBy = "student")
     private Passport passport;
 
     public Student() {
