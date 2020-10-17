@@ -36,7 +36,7 @@ public class AluraRepository {
     public void metodoExemplo() {
 
         String jpql = " select c from Conta c  ";
-        TypedQuery<Conta> query = entityManager.createQuery(jpql, Conta.class);
+        TypedQuery<Conta> query = entityManager.createNamedQuery("query_get_all_conta", Conta.class);
         List<Conta> contas = query.getResultList();
         contas.forEach(System.out::println);
     }
