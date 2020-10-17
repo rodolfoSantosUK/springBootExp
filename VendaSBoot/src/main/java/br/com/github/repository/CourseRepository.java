@@ -40,6 +40,7 @@ public class CourseRepository {
         return courseFromDatabase;
     }
 
+    @Transactional
     public void deleteById(Long id) {
         Course course = findById(id);
         em.remove(course);
@@ -68,9 +69,8 @@ public class CourseRepository {
         course.setName("merge do java pro banco");
         em.merge(course);
         logger.info(course.getName());
-
-
     }
 
+    
 
 }
