@@ -89,8 +89,12 @@ public class VendasApplication implements CommandLineRunner {
         Course course = new Course();
         course.setName("Linux");
 
+        courseRepository.save(course);
+
         Course courseFromDatabase = courseRepository.findById(1L);
         logger.info("Course on database: " + courseFromDatabase);
+
+       // courseRepository.usandoRefresh(new Course("Rodolfo"));
 
     }
 
