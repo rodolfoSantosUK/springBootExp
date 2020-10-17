@@ -20,6 +20,15 @@ public class Student {
         this.passport = passport;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", passport=" + passport +
+                '}';
+    }
+
     @OneToOne
     private Passport passport;
 

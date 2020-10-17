@@ -6,8 +6,6 @@ import br.com.github.alura.modelo.TipoMovimentacao;
 import br.com.github.in28.modelo.Course;
 import br.com.github.in28.modelo.Passport;
 import br.com.github.in28.modelo.Student;
-import br.com.github.modelo.Cliente;
-import br.com.github.modelo.Pedido;
 import br.com.github.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +14,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,7 +27,7 @@ import java.util.List;
         "br.com.github.alura",
         "br.com.github.in28.modelo"})
 @EnableJpaRepositories("br.com.github.repository")
-public class VendasApplication implements CommandLineRunner {
+public class MainApplication implements CommandLineRunner {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -115,10 +110,15 @@ public class VendasApplication implements CommandLineRunner {
     }
 
 
+    public void getStudentWithPassport() {
+        Student student = studentRepository.findById(2L);
+        System.out.println(student);
+    }
+
 
 
     public static void main(String[] args) {
-        SpringApplication.run(VendasApplication.class, args);
+        SpringApplication.run(MainApplication.class, args);
     }
 
     @Override
@@ -126,5 +126,6 @@ public class VendasApplication implements CommandLineRunner {
 //        testeCursoAlura();
       //  testeCursoIn28();
         testeStudentPassport();
+        getStudentWithPassport();
     }
 }

@@ -31,11 +31,6 @@ public class StudentRepository {
         return student;
     }
 
-    public Student findById(Integer id) {
-        Student studentFromDatabase = em.find(Student.class, id);
-        return studentFromDatabase;
-    }
-
     @Transactional
     public void deleteById(Long id) {
         Student student = findById(id);
