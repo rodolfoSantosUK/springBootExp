@@ -4,12 +4,11 @@ import br.com.github.alura.modelo.Conta;
 import br.com.github.alura.modelo.Movimentacao;
 import br.com.github.alura.modelo.TipoMovimentacao;
 import br.com.github.in28.modelo.Course;
+import br.com.github.in28.modelo.Passport;
+import br.com.github.in28.modelo.Student;
 import br.com.github.modelo.Cliente;
 import br.com.github.modelo.Pedido;
-import br.com.github.repository.AluraRepository;
-import br.com.github.repository.ClienteRepository;
-import br.com.github.repository.CourseRepository;
-import br.com.github.repository.PedidoRepository;
+import br.com.github.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +41,12 @@ public class VendasApplication implements CommandLineRunner {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private PassportRepository passportRepository;
 
     public void testeCursoAlura() {
         Conta conta = new Conta();
@@ -98,6 +103,20 @@ public class VendasApplication implements CommandLineRunner {
 
     }
 
+    public void testeStudentPassport() {
+
+        Passport passport = new Passport("Z43423");
+        passportRepository.save(passport);
+
+        Student student = new Student("Mike");
+        student.setPassport(passport);
+        studentRepository.save(student);
+
+    }
+
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(VendasApplication.class, args);
     }
@@ -105,7 +124,7 @@ public class VendasApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        testeCursoAlura();
-        testeCursoIn28();
-
+      //  testeCursoIn28();
+        testeStudentPassport();
     }
 }

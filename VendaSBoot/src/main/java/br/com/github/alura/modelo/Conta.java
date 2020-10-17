@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table( name = "conta")
-@NamedQueries(value = {@NamedQuery(name = "query_get_all_conta", query = "SELECT C FROM CONTA C")})
+@NamedQueries(value = {@NamedQuery(name = "query_get_all_conta", query = "SELECT C FROM Conta C")})
 public class Conta {
 
 	@Id

@@ -1,9 +1,6 @@
 package br.com.github.in28.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -12,9 +9,25 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String name;
 
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
+    @OneToOne
+    private Passport passport;
+
     public Student() {
+    }
+
+    public Student(String name) {
+        this.name = name;
     }
 
     public Long getId() {
