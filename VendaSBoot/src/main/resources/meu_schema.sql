@@ -3,6 +3,8 @@ CREATE TABLE cliente (
     NOME VARCHAR(100)
 );
 
+--  insert into cliente (id, nome) values (1,"Rodolfo")
+
 CREATE TABLE PRODUTO (
     ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     DESCRICAO VARCHAR(100),

@@ -1,5 +1,7 @@
 package br.com.github.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.Set;
@@ -16,6 +18,18 @@ public class Cliente {
     @Column(name="nome", length = 10)
     private String nome;
 
+    @Column
+    private String cpf;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private Set<Pedido> pedidos;
 

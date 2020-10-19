@@ -6,6 +6,7 @@ import br.com.github.alura.modelo.TipoMovimentacao;
 import br.com.github.in28.modelo.Course;
 import br.com.github.in28.modelo.Passport;
 import br.com.github.in28.modelo.Student;
+import br.com.github.modelo.Cliente;
 import br.com.github.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ import java.util.List;
         "br.com.github.alura",
         "br.com.github.in28.modelo"})
 @EnableJpaRepositories("br.com.github.repository")
-public class MainApplication implements CommandLineRunner {
+public class MainApplication { // implements CommandLineRunner {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -115,17 +116,27 @@ public class MainApplication implements CommandLineRunner {
         System.out.println(student);
     }
 
+//    public CommandLineRunner commandLineRunner(@Autowired ClienteRepository clienteRepository) {
+//        return args -> {
+//          Cliente cliente1 = new Cliente("Rodolfo");
+//          clienteRepository.save(cliente1);
+//        };
+//    }
 
 
     public static void main(String[] args) {
+     // System.setProperty("server.servlet.context-path", "/");
         SpringApplication.run(MainApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-//        testeCursoAlura();
-      //  testeCursoIn28();
-        testeStudentPassport();
-        getStudentWithPassport();
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//      //  testeCursoAlura();
+//      //  testeCursoIn28();
+//      //  testeStudentPassport();
+//      //  getStudentWithPassport();
+//    }
+
+
+
 }
