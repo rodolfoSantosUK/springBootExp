@@ -1,8 +1,10 @@
 package br.com.rest;
 
+import br.com.github.modelo.Pedido;
+import br.com.rest.dto.PedidoDTO;
 import br.com.service.PedidoService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/pedidos")
@@ -14,6 +16,14 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Integer save(@RequestBody PedidoDTO pedidoDTO) {
+
+        Pedido pedido = pedidoService.salvar(pedidoDTO);
+        return pedido.getId();
+    }
 
 
 }

@@ -77,7 +77,7 @@ public class ClienteController {
 
 
     public void gerandoMassa() {
-        clienteRepository.save(new Cliente("Rodolfo"));
+        //clienteRepository.save(new Cliente("Rodolfo"));
     }
 
 }
