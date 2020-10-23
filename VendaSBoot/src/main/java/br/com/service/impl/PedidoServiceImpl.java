@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,6 +52,11 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setItens(itemPedidos);
 
         return pedido;
+    }
+
+    @Override
+    public Optional<Pedido> obterPedidoCompleto(Integer id) {
+        return pedidoRepository.findByIdFetchItens(id);
     }
 
     private List<ItemPedido> converterItemPedido(Pedido pedido, List<ItemPedidoDTO> itemPedidoList) {
