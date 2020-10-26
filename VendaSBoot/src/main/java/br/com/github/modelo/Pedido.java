@@ -1,5 +1,6 @@
 package br.com.github.modelo;
 
+import br.com.github.enumerations.StatusPedido;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,9 @@ public class Pedido {
 
     @Column
     private BigDecimal total;
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
 
     public List<ItemPedido> getItens() {
         return itens;

@@ -51,8 +51,8 @@ public class PedidoController {
                 .nomeCliente(pedido.getCliente().getNome())
                 .total(pedido.getTotal())
                 .items(converter(pedido.getItens()))
+                .status(pedido.getStatus().name())
                 .build();
-
     }
 
 
@@ -73,6 +73,8 @@ public class PedidoController {
                .collect(Collectors.toList());
 
     }
+
+
 
 
 }

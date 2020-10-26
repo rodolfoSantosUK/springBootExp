@@ -1,5 +1,6 @@
 package br.com.service.impl;
 
+import br.com.github.enumerations.StatusPedido;
 import br.com.github.exception.RegraNegocioException;
 import br.com.github.modelo.Cliente;
 import br.com.github.modelo.ItemPedido;
@@ -44,6 +45,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setTotal(pedidoDTO.getTotal());
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         pedidoRepository.save(pedido);
         List<ItemPedido> itemPedidos = converterItemPedido(pedido, pedidoDTO.getItems());
