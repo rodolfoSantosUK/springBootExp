@@ -1,7 +1,9 @@
 package br.com.rest;
 
+import br.com.github.enumerations.StatusPedido;
 import br.com.github.modelo.ItemPedido;
 import br.com.github.modelo.Pedido;
+import br.com.rest.dto.AtulizacaoStatusPedidoDTO;
 import br.com.rest.dto.InformacoesItemPedidoDTO;
 import br.com.rest.dto.InformacoesPedidoDTO;
 import br.com.rest.dto.PedidoDTO;
@@ -11,6 +13,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.websocket.server.PathParam;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
@@ -62,19 +65,27 @@ public class PedidoController {
             return Collections.emptyList();
         }
 
-       return  itens.stream()
-               .map( item -> InformacoesItemPedidoDTO
-                             .builder()
-                             .descricaoProduto(item.getProduto().getDescricao())
-                             .precoUnitario(item.getProduto().getPreco())
-                             .quantidade(item.getQuantidade())
-                       .build()
-               )
-               .collect(Collectors.toList());
+        return itens.stream()
+                .map(item -> InformacoesItemPedidoDTO
+                        .builder()
+                        .descricaoProduto(item.getProduto().getDescricao())
+                        .precoUnitario(item.getProduto().getPreco())
+                        .quantidade(item.getQuantidade())
+                        .build()
+                )
+                .collect(Collectors.toList());
 
     }
 
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStatus(@PathVariable Integer id ,
+                             @RequestBody  AtulizacaoStatusPedidoDTO dto) {
 
+    String novoStatus = dto.getNovoStatus();
+    pedidoService.atualizaStatus(id, StatusPedido.valueOf(novoStatus));
+
+    }
 
 
 }

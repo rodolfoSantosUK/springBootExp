@@ -1,6 +1,7 @@
 package br.com.service.impl;
 
 import br.com.github.enumerations.StatusPedido;
+import br.com.github.exception.PedidoNaoEncontradoException;
 import br.com.github.exception.RegraNegocioException;
 import br.com.github.modelo.Cliente;
 import br.com.github.modelo.ItemPedido;
@@ -59,6 +60,17 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return pedidoRepository.findByIdFetchItens(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+
+        pedidoRepository.findById(id)
+                .map( pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return pedidoRepository.save(pedido);
+                }).orElseThrow(() -> new PedidoNaoEncontradoException() )  ;
     }
 
     private List<ItemPedido> converterItemPedido(Pedido pedido, List<ItemPedidoDTO> itemPedidoList) {

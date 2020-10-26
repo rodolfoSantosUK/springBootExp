@@ -1,0 +1,43 @@
+
+POST
+http://localhost:8080/api/cliente/
+{
+    "nome" : "Ronaldo",
+    "cpf" : "10677061781"
+}
+
+POST
+http://localhost:8080/api/produto/
+{
+    "descricao" : "impressora",
+    "preco" : 700
+}
+
+POST
+http://localhost:8080/api/pedidos/
+{
+  "cliente" : 1,
+  "total" : 100,
+  "items" : [
+      {
+          "produto"    : 2,
+          "quantidade" : 10
+      }
+  ]
+}
+
+{
+  "codigo" : 3
+  "cpf" :"10655487985"
+  "nomeCliente" : "Fulano" ,
+  "dataPedido" : "24/02/2020",
+  "status" : "REALIZADO"
+  "total" : 1400.00 ,
+  "items" : [
+      {
+          "descricaoProduto" : "Impressora" ,
+          "precoUnitario" : 700.00,
+          "quantidade" : 2
+      }
+  ]
+}
