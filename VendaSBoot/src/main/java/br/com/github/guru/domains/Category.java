@@ -1,4 +1,5 @@
-package guru.springframework.domains;
+package br.com.github.guru.domains;
+
 
 import javax.persistence.*;
 import java.util.Set;
