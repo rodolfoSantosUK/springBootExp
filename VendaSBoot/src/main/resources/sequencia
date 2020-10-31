@@ -41,3 +41,9 @@ http://localhost:8080/api/pedidos/
       }
   ]
 }
+
+POST
+http://localhost:8080/api/pedidos/3
+{
+"novoStatus" : "CANCELADO"
+}
