@@ -1,10 +1,10 @@
-package guru.springframework.controllers;
+package br.com.rest;
 
 
-import guru.springframework.domains.Category;
-import guru.springframework.domains.UnitOfMeasure;
-import guru.springframework.repository.CategoryRepository;
-import guru.springframework.repository.UnitOfMeasureRepository;
+import br.com.github.guru.domains.Category;
+import br.com.github.guru.domains.UnitOfMeasure;
+import br.com.github.repository.CategoryRepository;
+import br.com.github.repository.UnitOfMeasureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

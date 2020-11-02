@@ -26,7 +26,8 @@ import java.util.List;
 @ComponentScan({"br.*"})
 @EntityScan(basePackages = {"br.com.github.modelo",
         "br.com.github.alura",
-        "br.com.github.in28.modelo"})
+        "br.com.github.in28.modelo",
+        "br.com.github.guru.domains"    })
 @EnableJpaRepositories("br.com.github.repository")
 public class MainApplication { // implements CommandLineRunner {
 

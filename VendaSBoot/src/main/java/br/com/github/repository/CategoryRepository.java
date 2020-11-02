@@ -1,6 +1,7 @@
-package guru.springframework.repository;
+package br.com.github.repository;
 
-import guru.springframework.domains.Category;
+
+import br.com.github.guru.domains.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
