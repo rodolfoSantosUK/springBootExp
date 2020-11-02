@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication
-@ComponentScan({"br.*"})
+@ComponentScan({"br.*", "br.com.service"})
 @EntityScan(basePackages = {"br.com.github.modelo",
         "br.com.github.alura",
         "br.com.github.in28.modelo",

@@ -5,19 +5,43 @@ import br.com.github.guru.domains.Category;
 import br.com.github.guru.domains.UnitOfMeasure;
 import br.com.github.repository.CategoryRepository;
 import br.com.github.repository.UnitOfMeasureRepository;
+import br.com.service.OwnerSDJpaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-@Controller
+@RestController
+@RequestMapping("/index")
 public class IndexController {
 
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
     private UnitOfMeasureRepository unitOfMeasureRepository;
+
+    @Autowired
+    private OwnerSDJpaService ownerSDJpaService;
+
+
+    public IndexController(OwnerSDJpaService ownerSDJpaService) {
+        this.ownerSDJpaService = ownerSDJpaService;
+    }
+
+    @GetMapping("/all")
+    public String testano() {
+
+        ownerSDJpaService.findAll().stream().map( owner -> {
+            System.out.println(owner.getId());
+            return null;
+        }) ;
+
+        return null;
+    }
 
     @RequestMapping({"",  "/", "/index"})
     public String getIndexPage() {
