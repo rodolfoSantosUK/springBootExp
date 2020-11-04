@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collections;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Data
@@ -21,10 +22,12 @@ public class Cliente {
     @Column( name = "id")
     private Integer id;
 
+    @NotBlank( message = "Nome deve ser preenchido")
     @Column(name="nome", length = 10)
     private String nome;
 
-    @Column
+    @Column(name = "cpf")
+    @NotBlank( message = "Nome deve ser preenchido")
     private String cpf;
 
     @JsonIgnore

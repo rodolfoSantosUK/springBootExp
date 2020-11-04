@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import sun.awt.image.IntegerComponentRaster;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,14 +24,14 @@ public class ProdutoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Produto save(@RequestBody Produto produto) {
+    public Produto save(@RequestBody  @Valid Produto produto) {
         return produtoRepository.save(produto);
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void updateProduto(@PathVariable Integer id,
-                              @RequestBody Produto produto) {
+                              @RequestBody @Valid Produto produto) {
         produtoRepository
                 .findById(id)
                 .map(produtoEncontrado -> {
