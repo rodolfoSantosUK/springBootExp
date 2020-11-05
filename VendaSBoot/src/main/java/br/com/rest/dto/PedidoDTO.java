@@ -12,10 +12,12 @@ package br.com.rest.dto;
 //          ]
 //}
 
+import br.com.github.exception.NotEmptyList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -25,8 +27,10 @@ import java.util.List;
 @NoArgsConstructor
 public class PedidoDTO {
 
+    @NotNull
     private Integer cliente;
     private BigDecimal total;
+    @NotEmptyList(message = "Pedido nao pode ser realizado sem itens.")
     private List<ItemPedidoDTO> items;
 
 }
